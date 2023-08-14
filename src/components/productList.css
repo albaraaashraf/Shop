@@ -1,0 +1,10 @@
+.filtring-w {
+  max-width: 25%;
+  /* background-color: black; */
+}
+
+.product-decs-scroll {
+  /* overflow-y: hidden; */
+  word-wrap: break-word;
+  transition-duration: 500ms;
+}
