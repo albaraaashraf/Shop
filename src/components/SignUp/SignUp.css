@@ -6,9 +6,25 @@
   overflow: hidden;
 }
 
+.form-container #form-title {
+  color: #eee;
+  font-size: 3rem;
+  font-family: "Courier New", Courier, monospace;
+}
+
 .sub-btn {
   background-color: #a5bbfa;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition-duration: 0.5s;
 }
+
+.sub-btn:hover {
+  opacity: 0.7;
+}
+
 .backToHome {
   position: absolute;
   display: flex;
