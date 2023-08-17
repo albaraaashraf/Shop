@@ -1,0 +1,29 @@
+.form-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(to right, #272727, #05102b);
+  overflow: hidden;
+}
+
+.sub-btn {
+  background-color: #a5bbfa;
+}
+.backToHome {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 1rem;
+  color: #eee;
+  cursor: default;
+}
+.backToHome :nth-child(1) {
+  font-size: 5rem;
+
+  cursor: pointer;
+}
+.backToHome :nth-child(2) {
+  font-size: 2rem;
+}
