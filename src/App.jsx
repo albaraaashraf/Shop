@@ -10,6 +10,7 @@ import {
 // styling
 //// Bootstrap
 import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 //// other style files
 import "./components/productList.css";
 
@@ -17,15 +18,11 @@ import "./components/productList.css";
 import ProductsList from "./components/components/productsList";
 import About from "./components/About";
 import ContactUs from "./components/components/contactUs";
-import TargetProduct from "./components/components/targetProduct";
+import TargetProduct from "./components/targetProduct/targetProduct";
 import RootLayout from "./components/layout/RootLayout";
 import SingUp from "./components/SignUp/SingUp";
 import NotFoundPage from "./components/layout/NotFoundPage";
-
-// import Home from "./components/components/home";
-/* <Route index element={<Home />} /> */
-
-/* <Route path="/SignIn" element={<SignIn />}/> */
+import LogIn from "./components/logIn/LogIn";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -35,6 +32,7 @@ const router = createBrowserRouter(
       <Route path="/About" element={<About />} />
       <Route path="/US" element={<ContactUs />} />
       <Route path="/SignUp" element={<SingUp />} />
+      <Route path="/logIn" element={<LogIn />} />
 
       <Route path="*" element={<NotFoundPage />} />
     </Route>

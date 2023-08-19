@@ -1,6 +1,7 @@
 import { Outlet } from "react-router";
-import Navbar from "../components/navbar";
+import Navbar from "../navbar/navbar";
 import { createContext, useState } from "react";
+import UserProvider from "../../Context/userContext";
 
 export const NavbarContext = createContext();
 
@@ -15,9 +16,11 @@ export default function RootLayout() {
   return (
     <div>
       <NavbarContext.Provider value={value}>
-        <Navbar />
+        <UserProvider>
+          <Navbar />
 
-        {<Outlet />}
+          {<Outlet />}
+        </UserProvider>
       </NavbarContext.Provider>
     </div>
   );

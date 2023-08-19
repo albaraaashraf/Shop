@@ -147,7 +147,7 @@ export default function SingUp() {
             </label>
           </div>
           <div className="col-6 col-md-5 col-lg-4 d-flex justify-content-end">
-            <input type="submit" className=" sub-btn" />
+            <input type="submit" value={"Sign Up"} className=" sub-btn" />
           </div>
         </div>
       </form>
