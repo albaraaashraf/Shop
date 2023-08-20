@@ -59,10 +59,14 @@ function ProductsList() {
             aria-label="Vertical button group"
           >
             <Category category={"All"} filter={() => filterProducts("All")} />
-            {categ.map((cat) => {
+            {categ.map((cat, i) => {
               return (
                 // eslint-disable-next-line react/jsx-key
-                <Category category={cat} filter={() => filterProducts(cat)} />
+                <Category
+                  category={cat}
+                  filter={() => filterProducts(cat)}
+                  key={i}
+                />
               );
             })}
           </div>

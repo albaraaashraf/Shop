@@ -2,10 +2,12 @@
 import React from "react";
 
 import { Link } from "react-router-dom";
+import { useUser } from "../../Context/userContext";
 
 function ProductItem(probs) {
   // params for routing
 
+  const { signed } = useUser();
   //@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
   let buyBtn = () => {
@@ -37,9 +39,11 @@ function ProductItem(probs) {
             Details
           </Link>
         )}
-        <button className="btn btn-secondary" onClick={buyBtn}>
-          Add to Cart
-        </button>
+        {signed && (
+          <button className="btn btn-secondary" onClick={buyBtn}>
+            Add to Cart
+          </button>
+        )}
       </div>
     </>
   );

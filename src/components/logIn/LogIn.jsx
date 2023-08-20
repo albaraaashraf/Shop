@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { AiOutlineRollback } from "react-icons/ai";
 import "./logIn.css";
 import { useNavigate } from "react-router";
@@ -11,6 +11,8 @@ export default function LogIn() {
   const emailRef = useRef();
   const passwordRef = useRef();
 
+  const [error, setError] = useState();
+
   const navigate = useNavigate();
   const { setShowNavBar } = useContext(NavbarContext);
 
@@ -20,10 +22,10 @@ export default function LogIn() {
 
   async function signIn(e) {
     e.preventDefault();
-
+    setError("");
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
-    console.log(password);
+
     await signInWithEmailAndPassword(auth, email, password)
       .then(() => {
         console.log("signed IN");
@@ -31,7 +33,7 @@ export default function LogIn() {
         window.location.reload();
       })
       .catch((e) => {
-        console.log(e);
+        setError(e.code.slice(5).replace("-", " "));
       });
   }
 
@@ -82,6 +84,13 @@ export default function LogIn() {
             </div>
             <div className="col-6 col-md-5 col-lg-4 d-flex justify-content-center">
               <input type="submit" value={"Sign In"} className=" sub-btn" />
+            </div>
+            <div className="col-6 col-md-5 col-lg-4 d-flex justify-content-center">
+              {error && (
+                <div className="alert alert-danger" role="alert">
+                  {error}
+                </div>
+              )}
             </div>
           </div>
         </form>

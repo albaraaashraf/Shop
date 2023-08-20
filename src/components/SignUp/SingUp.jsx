@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import "./SignUp.css";
 import { AiOutlineRollback } from "react-icons/ai";
 import { useNavigate } from "react-router";
@@ -14,12 +14,12 @@ export default function SingUp() {
   const userNameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
-
+  const [error, setError] = useState();
   const { setShowNavBar } = useContext(NavbarContext);
 
   async function SingUp(e) {
     e.preventDefault();
-
+    setError("");
     const form = document.querySelector("#signUp-form");
 
     const email = emailRef.current.value;
@@ -32,14 +32,18 @@ export default function SingUp() {
       gender: form.elements.gender.value,
     };
 
-    await createUserWithEmailAndPassword(auth, email, password).then((user) => {
-      data = { ...data, uid: user.user.uid };
+    await createUserWithEmailAndPassword(auth, email, password)
+      .then((user) => {
+        data = { ...data, uid: user.user.uid };
 
-      const userRef = doc(db, "Users", data.uid);
-      setDoc(userRef, data).then(() => {
-        console.log("firestore added ");
+        const userRef = doc(db, "Users", data.uid);
+        setDoc(userRef, data).then(() => {
+          console.log("firestore added ");
+        });
+      })
+      .catch((e) => {
+        setError(e.code.slice(5).replace("-", " "));
       });
-    });
 
     console.log(data);
     form.reset();
@@ -148,6 +152,13 @@ export default function SingUp() {
           </div>
           <div className="col-6 col-md-5 col-lg-4 d-flex justify-content-end">
             <input type="submit" value={"Sign Up"} className=" sub-btn" />
+          </div>
+          <div className="col-6 col-md-5 col-lg-4 d-flex justify-content-center">
+            {error && (
+              <div className="alert alert-danger" role="alert">
+                {error}
+              </div>
+            )}
           </div>
         </div>
       </form>
